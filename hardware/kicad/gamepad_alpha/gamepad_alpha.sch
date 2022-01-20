@@ -1,0 +1,1509 @@
+EESchema Schematic File Version 4
+EELAYER 30 0
+EELAYER END
+$Descr A4 11693 8268
+encoding utf-8
+Sheet 1 1
+Title ""
+Date ""
+Rev "pre-rev0"
+Comp ""
+Comment1 ""
+Comment2 ""
+Comment3 ""
+Comment4 ""
+$EndDescr
+Wire Wire Line
+	5200 3950 5500 3950
+Wire Wire Line
+	5200 4250 5500 4250
+Wire Wire Line
+	5200 4350 5500 4350
+Wire Wire Line
+	5200 4450 5500 4450
+Wire Wire Line
+	5200 4550 5500 4550
+Wire Wire Line
+	5200 4750 5500 4750
+Wire Wire Line
+	5200 4650 5500 4650
+Wire Wire Line
+	5200 4850 5500 4850
+Wire Wire Line
+	5200 4950 5500 4950
+Wire Wire Line
+	5200 5050 5500 5050
+Wire Wire Line
+	5200 5150 5500 5150
+Wire Wire Line
+	5200 5350 5500 5350
+Wire Wire Line
+	5200 5250 5500 5250
+Wire Wire Line
+	5200 5450 5500 5450
+Wire Wire Line
+	5200 5550 5500 5550
+Wire Wire Line
+	5200 5650 5500 5650
+Wire Wire Line
+	3500 3950 3800 3950
+Wire Wire Line
+	3500 4150 3800 4150
+Wire Wire Line
+	3500 4050 3800 4050
+Wire Wire Line
+	3500 4250 3800 4250
+Wire Wire Line
+	3500 4350 3800 4350
+Wire Wire Line
+	3500 4450 3800 4450
+Wire Wire Line
+	3500 4550 3800 4550
+Wire Wire Line
+	3500 4750 3800 4750
+Wire Wire Line
+	3500 4650 3800 4650
+Wire Wire Line
+	3500 4850 3800 4850
+Wire Wire Line
+	3500 4950 3800 4950
+Wire Wire Line
+	3500 5050 3800 5050
+Wire Wire Line
+	3500 5150 3800 5150
+Wire Wire Line
+	3500 5350 3800 5350
+Wire Wire Line
+	3500 5250 3800 5250
+Wire Wire Line
+	3500 5450 3800 5450
+Wire Wire Line
+	3500 5550 3800 5550
+Wire Wire Line
+	3500 5650 3800 5650
+Wire Wire Line
+	3500 3750 3800 3750
+Wire Wire Line
+	3500 3850 3800 3850
+Text Label 5250 4150 0    50   ~ 0
+3V3
+Text Label 5250 3950 0    50   ~ 0
+GND
+Text Label 5250 4950 0    50   ~ 0
+GND
+Text Label 5250 5450 0    50   ~ 0
+GND
+Text Label 3750 3950 2    50   ~ 0
+GND
+Text Label 3750 4450 2    50   ~ 0
+GND
+Text Label 3750 4950 2    50   ~ 0
+GND
+Text Label 3750 5450 2    50   ~ 0
+GND
+Text Label 5250 4650 0    50   ~ 0
+PICO_ADC0
+Text Label 5250 4550 0    50   ~ 0
+PICO_ADC1
+Text Label 5250 4350 0    50   ~ 0
+PICO_ADC2
+Text Label 5250 4250 0    50   ~ 0
+PICO_ADC_REF
+Text Label 3750 4850 2    50   ~ 0
+PICO_GP9
+Text Label 3750 4750 2    50   ~ 0
+PICO_GP8
+Text Label 3750 3750 2    50   ~ 0
+PICO_GP0
+Text Label 3750 3850 2    50   ~ 0
+PICO_GP1
+Text Label 3750 4050 2    50   ~ 0
+PICO_GP2
+Text Label 3750 4150 2    50   ~ 0
+PICO_GP3
+Text Label 3750 4250 2    50   ~ 0
+PICO_GP4
+Text Label 3750 4350 2    50   ~ 0
+PICO_GP5
+Text Label 3750 4550 2    50   ~ 0
+PICO_GP6
+Text Label 3750 4650 2    50   ~ 0
+PICO_GP7
+Text Label 3750 5050 2    50   ~ 0
+PICO_GP10
+Text Label 3750 5150 2    50   ~ 0
+PICO_GP11
+Text Label 5250 5050 0    50   ~ 0
+PICO_I2C0_SCL
+Text Label 5250 5150 0    50   ~ 0
+PICO_I2C0_SDA
+Text Label 5250 5350 0    50   ~ 0
+PICO_I2C1_SDA
+Text Label 5250 5250 0    50   ~ 0
+PICO_I2C1_SCL
+$Comp
+L MCU_RaspberryPi_and_Boards:Pico U1
+U 1 1 61E700E2
+P 4500 4700
+F 0 "U1" H 4500 5915 50  0000 C CNN
+F 1 "Pico" H 4500 5824 50  0000 C CNN
+F 2 "MCU_RaspberryPi_and_Boards:RPi_Pico_SMD_TH" V 4500 4700 50  0001 C CNN
+F 3 "" H 4500 4700 50  0001 C CNN
+	1    4500 4700
+	1    0    0    -1  
+$EndComp
+Text Label 5250 4750 0    50   ~ 0
+PICO_RUN
+$Comp
+L power:+3.3V #PWR01
+U 1 1 61E870DD
+P 1000 6850
+F 0 "#PWR01" H 1000 6700 50  0001 C CNN
+F 1 "+3.3V" H 1015 7023 50  0000 C CNN
+F 2 "" H 1000 6850 50  0001 C CNN
+F 3 "" H 1000 6850 50  0001 C CNN
+	1    1000 6850
+	1    0    0    -1  
+$EndComp
+$Comp
+L power:GND #PWR02
+U 1 1 61E8ADEE
+P 1000 7250
+F 0 "#PWR02" H 1000 7000 50  0001 C CNN
+F 1 "GND" H 1005 7077 50  0000 C CNN
+F 2 "" H 1000 7250 50  0001 C CNN
+F 3 "" H 1000 7250 50  0001 C CNN
+	1    1000 7250
+	1    0    0    -1  
+$EndComp
+$Comp
+L power:GNDA #PWR03
+U 1 1 61E8BFB7
+P 1250 7250
+F 0 "#PWR03" H 1250 7000 50  0001 C CNN
+F 1 "GNDA" H 1255 7077 50  0000 C CNN
+F 2 "" H 1250 7250 50  0001 C CNN
+F 3 "" H 1250 7250 50  0001 C CNN
+	1    1250 7250
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	1250 7200 1250 7250
+Wire Wire Line
+	1000 7250 1000 7200
+Wire Wire Line
+	1000 6850 1000 6900
+Text Label 1000 7200 2    50   ~ 0
+GND
+Text Label 1250 7200 0    50   ~ 0
+PICO_AGND
+$Comp
+L SparkFun-Connectors:CONN_03 J3
+U 1 1 61E90001
+P 1500 4650
+F 0 "J3" H 1272 4655 45  0000 R CNN
+F 1 "CONN_03" H 1272 4739 45  0000 R CNN
+F 2 "Connectors:1X03" H 1500 5050 20  0001 C CNN
+F 3 "" H 1500 4650 50  0001 C CNN
+F 4 "XXX-00000" H 1272 4834 60  0000 R CNN "Field4"
+	1    1500 4650
+	-1   0    0    1   
+$EndComp
+Wire Wire Line
+	1350 4650 1400 4650
+Wire Wire Line
+	1400 4750 1350 4750
+Wire Wire Line
+	1400 4850 1350 4850
+Text Label 1350 4750 2    50   ~ 0
+PICO_ADC0
+Text Label 1350 4650 2    50   ~ 0
+3V3
+$Comp
+L SparkFun-Connectors:CONN_03 J4
+U 1 1 61E99809
+P 1500 5000
+F 0 "J4" H 1272 5005 45  0000 R CNN
+F 1 "CONN_03" H 1272 5089 45  0000 R CNN
+F 2 "Connectors:1X03" H 1500 5400 20  0001 C CNN
+F 3 "" H 1500 5000 50  0001 C CNN
+F 4 "XXX-00000" H 1272 5184 60  0000 R CNN "Field4"
+	1    1500 5000
+	-1   0    0    1   
+$EndComp
+Wire Wire Line
+	1350 5000 1400 5000
+Wire Wire Line
+	1400 5100 1350 5100
+Wire Wire Line
+	1400 5200 1350 5200
+Text Label 1350 5000 2    50   ~ 0
+3V3
+$Comp
+L SparkFun-Connectors:CONN_03 J5
+U 1 1 61E9ABE8
+P 1500 5350
+F 0 "J5" H 1272 5355 45  0000 R CNN
+F 1 "CONN_03" H 1272 5439 45  0000 R CNN
+F 2 "Connectors:1X03" H 1500 5750 20  0001 C CNN
+F 3 "" H 1500 5350 50  0001 C CNN
+F 4 "XXX-00000" H 1272 5534 60  0000 R CNN "Field4"
+	1    1500 5350
+	-1   0    0    1   
+$EndComp
+Wire Wire Line
+	1350 5350 1400 5350
+Wire Wire Line
+	1400 5450 1350 5450
+Wire Wire Line
+	1400 5550 1350 5550
+Text Label 1350 5350 2    50   ~ 0
+3V3
+Text Label 1350 5100 2    50   ~ 0
+PICO_ADC1
+Text Label 1350 5450 2    50   ~ 0
+PICO_ADC2
+$Comp
+L SparkFun-Connectors:CONN_08BM08B-SRSS-TB J1
+U 1 1 61E9C91E
+P 1150 1800
+F 0 "J1" H 1108 2810 45  0000 C CNN
+F 1 "CONN_08BM08B-SRSS-TB" H 1108 2726 45  0000 C CNN
+F 2 "Connector_PinHeader_2.54mm:PinHeader_1x08_P2.54mm_Vertical" H 1150 2700 20  0001 C CNN
+F 3 "" H 1150 1800 50  0001 C CNN
+F 4 "CONN-10556" H 1108 2631 60  0000 C CNN "Field4"
+	1    1150 1800
+	1    0    0    -1  
+$EndComp
+$Comp
+L SparkFun-Connectors:CONN_08BM08B-SRSS-TB J7
+U 1 1 61E9FE21
+P 1650 1800
+F 0 "J7" H 1608 2810 45  0000 C CNN
+F 1 "CONN_08BM08B-SRSS-TB" H 1608 2726 45  0000 C CNN
+F 2 "Connector_PinHeader_2.54mm:PinHeader_1x08_P2.54mm_Vertical" H 1650 2700 20  0001 C CNN
+F 3 "" H 1650 1800 50  0001 C CNN
+F 4 "CONN-10556" H 1608 2631 60  0000 C CNN "Field4"
+	1    1650 1800
+	1    0    0    -1  
+$EndComp
+$Comp
+L SparkFun-Connectors:CONN_08BM08B-SRSS-TB J9
+U 1 1 61EA0F27
+P 2150 1800
+F 0 "J9" H 2108 2810 45  0000 C CNN
+F 1 "CONN_08BM08B-SRSS-TB" H 2108 2726 45  0000 C CNN
+F 2 "Connector_PinHeader_2.54mm:PinHeader_1x08_P2.54mm_Vertical" H 2150 2700 20  0001 C CNN
+F 3 "" H 2150 1800 50  0001 C CNN
+F 4 "CONN-10556" H 2108 2631 60  0000 C CNN "Field4"
+	1    2150 1800
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	1250 1100 1300 1100
+Wire Wire Line
+	1300 1100 1300 1200
+Wire Wire Line
+	1750 1800 1800 1800
+Wire Wire Line
+	1800 1800 1800 1700
+Wire Wire Line
+	1750 1100 1800 1100
+Connection ~ 1800 1100
+Wire Wire Line
+	1800 1100 1800 1000
+Wire Wire Line
+	1750 1200 1800 1200
+Connection ~ 1800 1200
+Wire Wire Line
+	1800 1200 1800 1100
+Wire Wire Line
+	1750 1300 1800 1300
+Connection ~ 1800 1300
+Wire Wire Line
+	1800 1300 1800 1200
+Wire Wire Line
+	1750 1400 1800 1400
+Connection ~ 1800 1400
+Wire Wire Line
+	1800 1400 1800 1300
+Wire Wire Line
+	1750 1500 1800 1500
+Connection ~ 1800 1500
+Wire Wire Line
+	1800 1500 1800 1400
+Wire Wire Line
+	1750 1600 1800 1600
+Connection ~ 1800 1600
+Wire Wire Line
+	1800 1600 1800 1500
+Wire Wire Line
+	1750 1700 1800 1700
+Connection ~ 1800 1700
+Wire Wire Line
+	1800 1700 1800 1600
+Wire Wire Line
+	1250 1200 1300 1200
+Connection ~ 1300 1200
+Wire Wire Line
+	1300 1200 1300 1300
+Wire Wire Line
+	1250 1300 1300 1300
+Connection ~ 1300 1300
+Wire Wire Line
+	1300 1300 1300 1400
+Wire Wire Line
+	1250 1400 1300 1400
+Connection ~ 1300 1400
+Wire Wire Line
+	1300 1400 1300 1500
+Wire Wire Line
+	1250 1500 1300 1500
+Connection ~ 1300 1500
+Wire Wire Line
+	1300 1500 1300 1600
+Wire Wire Line
+	1250 1600 1300 1600
+Connection ~ 1300 1600
+Wire Wire Line
+	1300 1600 1300 1700
+Wire Wire Line
+	1250 1700 1300 1700
+Connection ~ 1300 1700
+Wire Wire Line
+	1300 1700 1300 1800
+Wire Wire Line
+	1250 1800 1300 1800
+Connection ~ 1300 1800
+Wire Wire Line
+	1300 1800 1300 2000
+Wire Wire Line
+	2300 1100 2250 1100
+Wire Wire Line
+	2250 1200 2300 1200
+Wire Wire Line
+	2250 1300 2300 1300
+Wire Wire Line
+	2250 1400 2300 1400
+Wire Wire Line
+	2250 1500 2300 1500
+Wire Wire Line
+	2250 1600 2300 1600
+Wire Wire Line
+	2250 1700 2300 1700
+Wire Wire Line
+	2250 1800 2300 1800
+Text Label 1300 2000 2    50   ~ 0
+GND
+Text Label 1800 1000 0    50   ~ 0
+3V3
+Text Label 2300 1100 0    50   ~ 0
+PICO_GP0
+Text Label 2300 1200 0    50   ~ 0
+PICO_GP1
+Text Label 2300 1300 0    50   ~ 0
+PICO_GP2
+Text Label 2300 1400 0    50   ~ 0
+PICO_GP3
+Text Label 2300 1500 0    50   ~ 0
+PICO_GP4
+Text Label 2300 1600 0    50   ~ 0
+PICO_GP5
+Text Label 2300 1700 0    50   ~ 0
+PICO_GP6
+Text Label 2300 1800 0    50   ~ 0
+PICO_GP7
+Wire Wire Line
+	7450 3250 7250 3250
+Wire Wire Line
+	7450 3350 7250 3350
+Wire Wire Line
+	7450 3450 7250 3450
+Text Label 7450 3250 2    50   ~ 0
+ADC0
+Text Label 7450 3350 2    50   ~ 0
+ADC1
+Text Label 7450 3450 2    50   ~ 0
+ADC2
+Text Label 7250 3550 0    50   ~ 0
+ADC3
+Wire Wire Line
+	5200 4150 5500 4150
+Wire Wire Line
+	7850 4450 7850 4600
+Wire Wire Line
+	7450 3650 7250 3650
+Wire Wire Line
+	7450 3750 7250 3750
+Wire Wire Line
+	7450 3850 7250 3850
+Wire Wire Line
+	7450 3950 7250 3950
+Text Label 7850 4700 0    50   ~ 0
+GND
+Text Label 7850 2950 0    50   ~ 0
+3V3
+Text Label 8450 3350 0    50   ~ 0
+PICO_I2C0_SCL
+Text Label 8450 3250 0    50   ~ 0
+PICO_I2C0_SDA
+Text Label 7450 3650 2    50   ~ 0
+ADC4
+Text Label 7450 3750 2    50   ~ 0
+ADC5
+Text Label 7450 3850 2    50   ~ 0
+ADC6
+Text Label 7450 3950 2    50   ~ 0
+ADC7
+Text Label 8450 3550 0    50   ~ 0
+3V3
+Wire Wire Line
+	7850 2950 7850 2600
+Text Label 8650 3600 0    50   ~ 0
+3V3
+$Comp
+L SparkFun-Resistors:RESISTOR0805 R4
+U 1 1 61FEA889
+P 9300 3150
+F 0 "R4" V 9205 3218 45  0000 L CNN
+F 1 "10K" V 9289 3218 45  0000 L CNN
+F 2 "Resistor_SMD:R_0805_2012Metric_Pad1.20x1.40mm_HandSolder" H 9300 3300 20  0001 C CNN
+F 3 "" H 9300 3150 60  0001 C CNN
+F 4 " " V 9384 3218 60  0000 L CNN "Field4"
+	1    9300 3150
+	0    1    1    0   
+$EndComp
+$Comp
+L SparkFun-Resistors:RESISTOR0805 R5
+U 1 1 61FEFF7B
+P 9050 3050
+F 0 "R5" V 8955 3118 45  0000 L CNN
+F 1 "10K" V 9039 3118 45  0000 L CNN
+F 2 "Resistor_SMD:R_0805_2012Metric_Pad1.20x1.40mm_HandSolder" H 9050 3200 20  0001 C CNN
+F 3 "" H 9050 3050 60  0001 C CNN
+F 4 " " V 9134 3118 60  0000 L CNN "Field4"
+	1    9050 3050
+	0    1    1    0   
+$EndComp
+Wire Wire Line
+	9050 2850 9050 2700
+Text Label 9050 2700 0    50   ~ 0
+3V3
+Wire Wire Line
+	8250 3250 9050 3250
+$Comp
+L SparkFun-Capacitors:1.0UF-0805-25V-10% C1
+U 1 1 62006F6C
+P 2200 7100
+F 0 "C1" H 2308 7245 45  0000 L CNN
+F 1 "1.0UF" H 2308 7161 45  0000 L CNN
+F 2 "Resistor_SMD:R_0805_2012Metric_Pad1.20x1.40mm_HandSolder" H 2200 7350 20  0001 C CNN
+F 3 "" H 2200 7100 50  0001 C CNN
+F 4 "CAP-08064" H 2308 7066 60  0000 L CNN "Field4"
+	1    2200 7100
+	1    0    0    -1  
+$EndComp
+$Comp
+L SparkFun-Capacitors:1.0UF-0805-25V-10% C2
+U 1 1 620084C7
+P 2650 7100
+F 0 "C2" H 2758 7245 45  0000 L CNN
+F 1 "1.0UF" H 2758 7161 45  0000 L CNN
+F 2 "Resistor_SMD:R_0805_2012Metric_Pad1.20x1.40mm_HandSolder" H 2650 7350 20  0001 C CNN
+F 3 "" H 2650 7100 50  0001 C CNN
+F 4 "CAP-08064" H 2758 7066 60  0000 L CNN "Field4"
+	1    2650 7100
+	1    0    0    -1  
+$EndComp
+$Comp
+L SparkFun-Capacitors:1.0UF-0805-25V-10% C4
+U 1 1 62009E6E
+P 3100 7100
+F 0 "C4" H 3208 7245 45  0000 L CNN
+F 1 "1.0UF" H 3208 7161 45  0000 L CNN
+F 2 "Resistor_SMD:R_0805_2012Metric_Pad1.20x1.40mm_HandSolder" H 3100 7350 20  0001 C CNN
+F 3 "" H 3100 7100 50  0001 C CNN
+F 4 "CAP-08064" H 3208 7066 60  0000 L CNN "Field4"
+	1    3100 7100
+	1    0    0    -1  
+$EndComp
+$Comp
+L SparkFun-Capacitors:1.0UF-0805-25V-10% C5
+U 1 1 62009E75
+P 3550 7100
+F 0 "C5" H 3658 7245 45  0000 L CNN
+F 1 "1.0UF" H 3658 7161 45  0000 L CNN
+F 2 "Resistor_SMD:R_0805_2012Metric_Pad1.20x1.40mm_HandSolder" H 3550 7350 20  0001 C CNN
+F 3 "" H 3550 7100 50  0001 C CNN
+F 4 "CAP-08064" H 3658 7066 60  0000 L CNN "Field4"
+	1    3550 7100
+	1    0    0    -1  
+$EndComp
+$Comp
+L SparkFun-Capacitors:1.0UF-0805-25V-10% C6
+U 1 1 6200F145
+P 4000 7100
+F 0 "C6" H 4108 7245 45  0000 L CNN
+F 1 "1.0UF" H 4108 7161 45  0000 L CNN
+F 2 "Resistor_SMD:R_0805_2012Metric_Pad1.20x1.40mm_HandSolder" H 4000 7350 20  0001 C CNN
+F 3 "" H 4000 7100 50  0001 C CNN
+F 4 "CAP-08064" H 4108 7066 60  0000 L CNN "Field4"
+	1    4000 7100
+	1    0    0    -1  
+$EndComp
+$Comp
+L SparkFun-Capacitors:1.0UF-0805-25V-10% C7
+U 1 1 6200F14C
+P 5150 6350
+F 0 "C7" H 5258 6495 45  0000 L CNN
+F 1 "1.0UF" H 5258 6411 45  0000 L CNN
+F 2 "Resistor_SMD:R_0805_2012Metric_Pad1.20x1.40mm_HandSolder" H 5150 6600 20  0001 C CNN
+F 3 "" H 5150 6350 50  0001 C CNN
+F 4 "CAP-08064" H 5258 6316 60  0000 L CNN "Field4"
+	1    5150 6350
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	2200 6900 2200 6750
+Wire Wire Line
+	2200 6750 2650 6750
+Wire Wire Line
+	2650 6900 2650 6750
+Connection ~ 2650 6750
+Wire Wire Line
+	2650 6750 3100 6750
+Wire Wire Line
+	3100 6900 3100 6750
+Connection ~ 3100 6750
+Wire Wire Line
+	3100 6750 3550 6750
+Wire Wire Line
+	3550 6900 3550 6750
+Connection ~ 3550 6750
+Wire Wire Line
+	3550 6750 4000 6750
+Wire Wire Line
+	4000 6900 4000 6750
+Connection ~ 4000 6750
+Wire Wire Line
+	4450 7400 4000 7400
+Wire Wire Line
+	2200 7400 2200 7200
+Wire Wire Line
+	2650 7200 2650 7400
+Connection ~ 2650 7400
+Wire Wire Line
+	2650 7400 2200 7400
+Wire Wire Line
+	3100 7200 3100 7400
+Connection ~ 3100 7400
+Wire Wire Line
+	3100 7400 2650 7400
+Wire Wire Line
+	3550 7200 3550 7400
+Connection ~ 3550 7400
+Wire Wire Line
+	3550 7400 3100 7400
+Wire Wire Line
+	4000 7200 4000 7400
+Connection ~ 4000 7400
+Wire Wire Line
+	4000 7400 3550 7400
+Text Label 2200 7400 2    50   ~ 0
+GND
+Text Label 1000 6900 0    50   ~ 0
+3V3
+Text Label 2200 6750 0    50   ~ 0
+3V3
+$Comp
+L SparkFun-Capacitors:1.0UF-0805-25V-10% C3
+U 1 1 62056BD3
+P 6250 6350
+F 0 "C3" H 6358 6495 45  0000 L CNN
+F 1 "1.0UF" H 6358 6411 45  0000 L CNN
+F 2 "Resistor_SMD:R_0805_2012Metric_Pad1.20x1.40mm_HandSolder" H 6250 6600 20  0001 C CNN
+F 3 "" H 6250 6350 50  0001 C CNN
+F 4 "CAP-08064" H 6358 6316 60  0000 L CNN "Field4"
+	1    6250 6350
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	6250 6450 6250 6500
+Wire Wire Line
+	6250 6150 6250 6100
+Text Label 6250 5950 0    50   ~ 0
+3V3
+Wire Wire Line
+	4500 5850 4500 5950
+Text Label 4500 5950 0    50   ~ 0
+GND
+Text Label 3750 5250 2    50   ~ 0
+PICO_GP12
+Text Label 3750 5350 2    50   ~ 0
+PICO_GP13
+Text Label 3750 5550 2    50   ~ 0
+PICO_GP14
+Text Label 3750 5650 2    50   ~ 0
+PICO_GP15
+$Comp
+L SparkFun-Connectors:I2C_STANDARDQWIIC J6
+U 1 1 62075C94
+P 1150 6300
+F 0 "J6" H 1108 6910 45  0000 C CNN
+F 1 "I2C_STANDARDQWIIC" H 1108 6826 45  0000 C CNN
+F 2 "Connectors:1X04_1MM_RA" H 1150 6800 20  0001 C CNN
+F 3 "" H 1150 6300 50  0001 C CNN
+F 4 "CONN-13729" H 1108 6731 60  0000 C CNN "Field4"
+	1    1150 6300
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	1250 6000 1450 6000
+Wire Wire Line
+	1250 6100 1450 6100
+Wire Wire Line
+	1250 6300 1450 6300
+Text Label 1250 6300 0    50   ~ 0
+GND
+Text Label 1250 6100 0    50   ~ 0
+PICO_I2C1_SDA
+Text Label 1250 6000 0    50   ~ 0
+PICO_I2C1_SCL
+Wire Wire Line
+	1450 6200 1250 6200
+Wire Wire Line
+	5200 3750 5500 3750
+Text Label 5250 3750 0    50   ~ 0
+5V0
+Text Label 1250 6200 0    50   ~ 0
+3V3
+$Comp
+L Switch:SW_Push SW3
+U 1 1 620EC896
+P 4450 2300
+F 0 "SW3" H 4450 2585 50  0000 C CNN
+F 1 "SW_Push" H 4450 2494 50  0000 C CNN
+F 2 "Button_Switch_SMD:SW_SPST_TL3342" H 4450 2500 50  0001 C CNN
+F 3 "~" H 4450 2500 50  0001 C CNN
+	1    4450 2300
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	1300 4150 1150 4150
+Wire Wire Line
+	1150 4150 1150 4250
+Wire Wire Line
+	1300 4250 1150 4250
+Connection ~ 1150 4250
+Wire Wire Line
+	1150 4250 1150 4350
+Wire Wire Line
+	1900 4250 2000 4250
+Wire Wire Line
+	4650 2300 4750 2300
+Wire Wire Line
+	4250 2300 4100 2300
+Text Label 1150 4350 0    50   ~ 0
+GND
+Text Label 5250 5650 0    50   ~ 0
+PICO_GP16
+Text Label 5250 5550 0    50   ~ 0
+PICO_GP17
+Text Label 5250 4850 0    50   ~ 0
+PICO_GP22
+Text Label 4750 2300 0    50   ~ 0
+PICO_RUN
+Text Label 4100 2300 0    50   ~ 0
+GND
+Text Label 2000 4150 0    50   ~ 0
+PICO_GP16
+Text Label 2000 4250 0    50   ~ 0
+PICO_GP17
+$Comp
+L SparkFun-Connectors:CONN_08BM08B-SRSS-TB J2
+U 1 1 6212DBB0
+P 1150 3050
+F 0 "J2" H 1108 4060 45  0000 C CNN
+F 1 "CONN_08BM08B-SRSS-TB" H 1108 3976 45  0000 C CNN
+F 2 "Connector_PinHeader_2.54mm:PinHeader_1x08_P2.54mm_Vertical" H 1150 3950 20  0001 C CNN
+F 3 "" H 1150 3050 50  0001 C CNN
+F 4 "CONN-10556" H 1108 3881 60  0000 C CNN "Field4"
+	1    1150 3050
+	1    0    0    -1  
+$EndComp
+$Comp
+L SparkFun-Connectors:CONN_08BM08B-SRSS-TB J8
+U 1 1 6212DBB7
+P 1650 3050
+F 0 "J8" H 1608 4060 45  0000 C CNN
+F 1 "CONN_08BM08B-SRSS-TB" H 1608 3976 45  0000 C CNN
+F 2 "Connector_PinHeader_2.54mm:PinHeader_1x08_P2.54mm_Vertical" H 1650 3950 20  0001 C CNN
+F 3 "" H 1650 3050 50  0001 C CNN
+F 4 "CONN-10556" H 1608 3881 60  0000 C CNN "Field4"
+	1    1650 3050
+	1    0    0    -1  
+$EndComp
+$Comp
+L SparkFun-Connectors:CONN_08BM08B-SRSS-TB J10
+U 1 1 6212DBBE
+P 2150 3050
+F 0 "J10" H 2108 4060 45  0000 C CNN
+F 1 "CONN_08BM08B-SRSS-TB" H 2108 3976 45  0000 C CNN
+F 2 "Connector_PinHeader_2.54mm:PinHeader_1x08_P2.54mm_Vertical" H 2150 3950 20  0001 C CNN
+F 3 "" H 2150 3050 50  0001 C CNN
+F 4 "CONN-10556" H 2108 3881 60  0000 C CNN "Field4"
+	1    2150 3050
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	1250 2350 1300 2350
+Wire Wire Line
+	1300 2350 1300 2450
+Wire Wire Line
+	1750 3050 1800 3050
+Wire Wire Line
+	1800 3050 1800 2950
+Wire Wire Line
+	1750 2350 1800 2350
+Connection ~ 1800 2350
+Wire Wire Line
+	1800 2350 1800 2250
+Wire Wire Line
+	1750 2450 1800 2450
+Connection ~ 1800 2450
+Wire Wire Line
+	1800 2450 1800 2350
+Wire Wire Line
+	1750 2550 1800 2550
+Connection ~ 1800 2550
+Wire Wire Line
+	1800 2550 1800 2450
+Wire Wire Line
+	1750 2650 1800 2650
+Connection ~ 1800 2650
+Wire Wire Line
+	1800 2650 1800 2550
+Wire Wire Line
+	1750 2750 1800 2750
+Connection ~ 1800 2750
+Wire Wire Line
+	1800 2750 1800 2650
+Wire Wire Line
+	1750 2850 1800 2850
+Connection ~ 1800 2850
+Wire Wire Line
+	1800 2850 1800 2750
+Wire Wire Line
+	1750 2950 1800 2950
+Connection ~ 1800 2950
+Wire Wire Line
+	1800 2950 1800 2850
+Wire Wire Line
+	1250 2450 1300 2450
+Connection ~ 1300 2450
+Wire Wire Line
+	1300 2450 1300 2550
+Wire Wire Line
+	1250 2550 1300 2550
+Connection ~ 1300 2550
+Wire Wire Line
+	1300 2550 1300 2650
+Wire Wire Line
+	1250 2650 1300 2650
+Connection ~ 1300 2650
+Wire Wire Line
+	1300 2650 1300 2750
+Wire Wire Line
+	1250 2750 1300 2750
+Connection ~ 1300 2750
+Wire Wire Line
+	1300 2750 1300 2850
+Wire Wire Line
+	1250 2850 1300 2850
+Connection ~ 1300 2850
+Wire Wire Line
+	1300 2850 1300 2950
+Wire Wire Line
+	1250 2950 1300 2950
+Connection ~ 1300 2950
+Wire Wire Line
+	1300 2950 1300 3050
+Wire Wire Line
+	1250 3050 1300 3050
+Connection ~ 1300 3050
+Wire Wire Line
+	1300 3050 1300 3250
+Wire Wire Line
+	2300 2350 2250 2350
+Wire Wire Line
+	2250 2450 2300 2450
+Wire Wire Line
+	2250 2550 2300 2550
+Wire Wire Line
+	2250 2650 2300 2650
+Wire Wire Line
+	2250 2750 2300 2750
+Wire Wire Line
+	2250 2850 2300 2850
+Wire Wire Line
+	2250 2950 2300 2950
+Wire Wire Line
+	2250 3050 2300 3050
+Text Label 1300 3250 2    50   ~ 0
+GND
+Text Label 1800 2250 0    50   ~ 0
+3V3
+Text Label 2300 2350 0    50   ~ 0
+PICO_GP8
+Text Label 2300 2450 0    50   ~ 0
+PICO_GP9
+Text Label 2300 2550 0    50   ~ 0
+PICO_GP10
+Text Label 2300 2650 0    50   ~ 0
+PICO_GP11
+Text Label 2300 2750 0    50   ~ 0
+PICO_GP12
+Text Label 2300 2850 0    50   ~ 0
+PICO_GP13
+Text Label 2300 2950 0    50   ~ 0
+PICO_GP14
+Text Label 2300 3050 0    50   ~ 0
+PICO_GP15
+Wire Wire Line
+	4050 2950 4100 2950
+Wire Wire Line
+	4050 3050 4100 3050
+Wire Wire Line
+	4050 3150 4100 3150
+Wire Wire Line
+	4650 2850 4700 2850
+Wire Wire Line
+	4650 2950 4700 2950
+Wire Wire Line
+	4650 3050 4700 3050
+Wire Wire Line
+	4650 3150 4700 3150
+Wire Wire Line
+	4050 2850 4100 2850
+Wire Wire Line
+	4100 2850 4100 2950
+Wire Wire Line
+	4100 2950 4100 3050
+Connection ~ 4100 2950
+Wire Wire Line
+	4100 3050 4100 3150
+Connection ~ 4100 3050
+Wire Wire Line
+	4100 3150 4100 3250
+Connection ~ 4100 3150
+Wire Wire Line
+	4700 3150 4700 3050
+Wire Wire Line
+	4700 3050 4700 2950
+Connection ~ 4700 3050
+Wire Wire Line
+	4700 2950 4700 2850
+Connection ~ 4700 2950
+Wire Wire Line
+	4700 2850 4700 2750
+Connection ~ 4700 2850
+Wire Wire Line
+	5250 2850 5300 2850
+Wire Wire Line
+	5250 2950 5300 2950
+Wire Wire Line
+	5250 3050 5300 3050
+Wire Wire Line
+	5250 3150 5300 3150
+Wire Wire Line
+	5300 3150 5300 3050
+Wire Wire Line
+	5300 3050 5300 2950
+Connection ~ 5300 3050
+Wire Wire Line
+	5300 2950 5300 2850
+Connection ~ 5300 2950
+Wire Wire Line
+	5300 2850 5300 2750
+Connection ~ 5300 2850
+Text Label 4100 3250 2    50   ~ 0
+GND
+Text Label 5300 2750 0    50   ~ 0
+5V0
+Text Label 4700 2750 0    50   ~ 0
+3V3
+Wire Wire Line
+	1800 3700 1900 3700
+Wire Wire Line
+	1400 3700 1250 3700
+Text Label 1250 3700 0    50   ~ 0
+GND
+Text Label 1900 3700 0    50   ~ 0
+PICO_GP22
+$Comp
+L SparkFun-Connectors:CONN_08BM08B-SRSS-TB J14
+U 1 1 62317BCF
+P 8100 6100
+F 0 "J14" H 8058 7110 45  0000 C CNN
+F 1 "CONN_08BM08B-SRSS-TB" H 8058 7026 45  0000 C CNN
+F 2 "Connector_PinHeader_2.54mm:PinHeader_1x08_P2.54mm_Vertical" H 8100 7000 20  0001 C CNN
+F 3 "" H 8100 6100 50  0001 C CNN
+F 4 "CONN-10556" H 8058 6931 60  0000 C CNN "Field4"
+	1    8100 6100
+	1    0    0    -1  
+$EndComp
+$Comp
+L SparkFun-Connectors:CONN_08BM08B-SRSS-TB J16
+U 1 1 62317BD6
+P 10100 6100
+F 0 "J16" H 10058 7110 45  0000 C CNN
+F 1 "CONN_08BM08B-SRSS-TB" H 10058 7026 45  0000 C CNN
+F 2 "Connector_PinHeader_2.54mm:PinHeader_1x08_P2.54mm_Vertical" H 10100 7000 20  0001 C CNN
+F 3 "" H 10100 6100 50  0001 C CNN
+F 4 "CONN-10556" H 10058 6931 60  0000 C CNN "Field4"
+	1    10100 6100
+	1    0    0    -1  
+$EndComp
+$Comp
+L SparkFun-Connectors:CONN_08BM08B-SRSS-TB J15
+U 1 1 62317BDD
+P 9100 6100
+F 0 "J15" H 9058 7110 45  0000 C CNN
+F 1 "CONN_08BM08B-SRSS-TB" H 9058 7026 45  0000 C CNN
+F 2 "Connector_PinHeader_2.54mm:PinHeader_1x08_P2.54mm_Vertical" H 9100 7000 20  0001 C CNN
+F 3 "" H 9100 6100 50  0001 C CNN
+F 4 "CONN-10556" H 9058 6931 60  0000 C CNN "Field4"
+	1    9100 6100
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	8200 5400 8250 5400
+Wire Wire Line
+	8250 5400 8250 5500
+Wire Wire Line
+	10200 6100 10250 6100
+Wire Wire Line
+	10250 6100 10250 6000
+Wire Wire Line
+	10200 5400 10250 5400
+Connection ~ 10250 5400
+Wire Wire Line
+	10250 5400 10250 5300
+Wire Wire Line
+	10200 5500 10250 5500
+Connection ~ 10250 5500
+Wire Wire Line
+	10250 5500 10250 5400
+Wire Wire Line
+	10200 5600 10250 5600
+Connection ~ 10250 5600
+Wire Wire Line
+	10250 5600 10250 5500
+Wire Wire Line
+	10200 5700 10250 5700
+Connection ~ 10250 5700
+Wire Wire Line
+	10250 5700 10250 5600
+Wire Wire Line
+	10200 5800 10250 5800
+Connection ~ 10250 5800
+Wire Wire Line
+	10250 5800 10250 5700
+Wire Wire Line
+	10200 5900 10250 5900
+Connection ~ 10250 5900
+Wire Wire Line
+	10250 5900 10250 5800
+Wire Wire Line
+	10200 6000 10250 6000
+Connection ~ 10250 6000
+Wire Wire Line
+	10250 6000 10250 5900
+Wire Wire Line
+	8200 5500 8250 5500
+Connection ~ 8250 5500
+Wire Wire Line
+	8250 5500 8250 5600
+Wire Wire Line
+	8200 5600 8250 5600
+Connection ~ 8250 5600
+Wire Wire Line
+	8250 5600 8250 5700
+Wire Wire Line
+	8200 5700 8250 5700
+Connection ~ 8250 5700
+Wire Wire Line
+	8250 5700 8250 5800
+Wire Wire Line
+	8200 5800 8250 5800
+Connection ~ 8250 5800
+Wire Wire Line
+	8250 5800 8250 5900
+Wire Wire Line
+	8200 5900 8250 5900
+Connection ~ 8250 5900
+Wire Wire Line
+	8250 5900 8250 6000
+Wire Wire Line
+	8200 6000 8250 6000
+Connection ~ 8250 6000
+Wire Wire Line
+	8250 6000 8250 6100
+Wire Wire Line
+	8200 6100 8250 6100
+Connection ~ 8250 6100
+Wire Wire Line
+	8250 6100 8250 6300
+Wire Wire Line
+	9250 5400 9200 5400
+Wire Wire Line
+	9200 5500 9250 5500
+Wire Wire Line
+	9200 5600 9250 5600
+Wire Wire Line
+	9200 5700 9250 5700
+Wire Wire Line
+	9200 5800 9250 5800
+Wire Wire Line
+	9200 5900 9250 5900
+Wire Wire Line
+	9200 6000 9250 6000
+Wire Wire Line
+	9200 6100 9250 6100
+Text Label 8250 6300 2    50   ~ 0
+GND
+Text Label 10250 5300 0    50   ~ 0
+3V3
+Text Label 9250 5400 0    50   ~ 0
+ADC0
+Text Label 9250 5500 0    50   ~ 0
+ADC1
+Text Label 9250 5600 0    50   ~ 0
+ADC2
+Text Label 9250 5700 0    50   ~ 0
+ADC3
+Text Label 9250 5800 0    50   ~ 0
+ADC4
+Text Label 9250 5900 0    50   ~ 0
+ADC5
+Text Label 9250 6000 0    50   ~ 0
+ADC6
+Text Label 9250 6100 0    50   ~ 0
+ADC7
+$Comp
+L SparkFun-Capacitors:1.0UF-0805-25V-10% C8
+U 1 1 623617D4
+P 4900 7100
+F 0 "C8" H 5008 7245 45  0000 L CNN
+F 1 "1.0UF" H 5008 7161 45  0000 L CNN
+F 2 "Resistor_SMD:R_0805_2012Metric_Pad1.20x1.40mm_HandSolder" H 4900 7350 20  0001 C CNN
+F 3 "" H 4900 7100 50  0001 C CNN
+F 4 "CAP-08064" H 5008 7066 60  0000 L CNN "Field4"
+	1    4900 7100
+	1    0    0    -1  
+$EndComp
+$Comp
+L SparkFun-Capacitors:1.0UF-0805-25V-10% C10
+U 1 1 623617E2
+P 5800 7100
+F 0 "C10" H 5908 7245 45  0000 L CNN
+F 1 "1.0UF" H 5908 7161 45  0000 L CNN
+F 2 "Resistor_SMD:R_0805_2012Metric_Pad1.20x1.40mm_HandSolder" H 5800 7350 20  0001 C CNN
+F 3 "" H 5800 7100 50  0001 C CNN
+F 4 "CAP-08064" H 5908 7066 60  0000 L CNN "Field4"
+	1    5800 7100
+	1    0    0    -1  
+$EndComp
+$Comp
+L SparkFun-Capacitors:1.0UF-0805-25V-10% C11
+U 1 1 623617E9
+P 6250 7100
+F 0 "C11" H 6358 7245 45  0000 L CNN
+F 1 "1.0UF" H 6358 7161 45  0000 L CNN
+F 2 "Resistor_SMD:R_0805_2012Metric_Pad1.20x1.40mm_HandSolder" H 6250 7350 20  0001 C CNN
+F 3 "" H 6250 7100 50  0001 C CNN
+F 4 "CAP-08064" H 6358 7066 60  0000 L CNN "Field4"
+	1    6250 7100
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	6250 6750 6250 6900
+Wire Wire Line
+	4900 6900 4900 6750
+Connection ~ 4900 6750
+Wire Wire Line
+	4900 6750 5350 6750
+Wire Wire Line
+	5350 6900 5350 6750
+Connection ~ 5350 6750
+Wire Wire Line
+	5350 6750 5800 6750
+Wire Wire Line
+	5800 6900 5800 6750
+Connection ~ 5800 6750
+Wire Wire Line
+	5800 6750 6250 6750
+Wire Wire Line
+	6250 7200 6250 7400
+Wire Wire Line
+	6250 7400 5800 7400
+Wire Wire Line
+	4900 7200 4900 7400
+Connection ~ 4900 7400
+Wire Wire Line
+	4900 7400 4450 7400
+Wire Wire Line
+	5350 7200 5350 7400
+Connection ~ 5350 7400
+Wire Wire Line
+	5350 7400 4900 7400
+Wire Wire Line
+	5800 7200 5800 7400
+Connection ~ 5800 7400
+Wire Wire Line
+	5800 7400 5350 7400
+Wire Wire Line
+	4450 7200 4450 7400
+Wire Wire Line
+	4000 6750 4450 6750
+Connection ~ 4450 7400
+Wire Wire Line
+	4450 6900 4450 6750
+Connection ~ 4450 6750
+Wire Wire Line
+	4450 6750 4900 6750
+$Comp
+L SparkFun-Hardware:STANDOFF_ELECTRICAL H1
+U 1 1 623F1DA3
+P 3500 1100
+F 0 "H1" H 3558 1560 45  0000 C CNN
+F 1 "STANDOFF_ELECTRICAL" H 3558 1476 45  0000 C CNN
+F 2 "Hardware:STANDOFF-ELECTRICAL" H 3500 1450 20  0001 C CNN
+F 3 "" H 3500 1100 50  0001 C CNN
+F 4 "XXX-00000" H 3558 1381 60  0000 C CNN "Field4"
+	1    3500 1100
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	3800 1100 3950 1100
+Text Label 3900 1100 0    50   ~ 0
+GND
+$Comp
+L SparkFun-Hardware:STANDOFF_ELECTRICAL H2
+U 1 1 62409CBE
+P 4350 1100
+F 0 "H2" H 4408 1560 45  0000 C CNN
+F 1 "STANDOFF_ELECTRICAL" H 4408 1476 45  0000 C CNN
+F 2 "Hardware:STANDOFF-ELECTRICAL" H 4350 1450 20  0001 C CNN
+F 3 "" H 4350 1100 50  0001 C CNN
+F 4 "XXX-00000" H 4408 1381 60  0000 C CNN "Field4"
+	1    4350 1100
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	4650 1100 4800 1100
+Text Label 4750 1100 0    50   ~ 0
+GND
+$Comp
+L SparkFun-Hardware:STANDOFF_ELECTRICAL H3
+U 1 1 6241F016
+P 5200 1100
+F 0 "H3" H 5258 1560 45  0000 C CNN
+F 1 "STANDOFF_ELECTRICAL" H 5258 1476 45  0000 C CNN
+F 2 "Hardware:STANDOFF-ELECTRICAL" H 5200 1450 20  0001 C CNN
+F 3 "" H 5200 1100 50  0001 C CNN
+F 4 "XXX-00000" H 5258 1381 60  0000 C CNN "Field4"
+	1    5200 1100
+	1    0    0    -1  
+$EndComp
+$Comp
+L SparkFun-Hardware:STANDOFF_ELECTRICAL H4
+U 1 1 624345B9
+P 6100 1100
+F 0 "H4" H 6158 1560 45  0000 C CNN
+F 1 "STANDOFF_ELECTRICAL" H 6158 1476 45  0000 C CNN
+F 2 "Hardware:STANDOFF-ELECTRICAL" H 6100 1450 20  0001 C CNN
+F 3 "" H 6100 1100 50  0001 C CNN
+F 4 "XXX-00000" H 6158 1381 60  0000 C CNN "Field4"
+	1    6100 1100
+	1    0    0    -1  
+$EndComp
+$Comp
+L SparkFun-Connectors:I2C_STANDARDQWIIC J17
+U 1 1 6248C93F
+P 2100 6300
+F 0 "J17" H 2058 6910 45  0000 C CNN
+F 1 "I2C_STANDARDQWIIC" H 2058 6826 45  0000 C CNN
+F 2 "Connectors:1X04_1MM_RA" H 2100 6800 20  0001 C CNN
+F 3 "" H 2100 6300 50  0001 C CNN
+F 4 "CONN-13729" H 2058 6731 60  0000 C CNN "Field4"
+	1    2100 6300
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	2200 6000 2400 6000
+Wire Wire Line
+	2200 6100 2400 6100
+Wire Wire Line
+	2200 6300 2400 6300
+Text Label 2200 6300 0    50   ~ 0
+GND
+Text Label 2200 6100 0    50   ~ 0
+PICO_I2C1_SDA
+Text Label 2200 6000 0    50   ~ 0
+PICO_I2C1_SCL
+Wire Wire Line
+	2400 6200 2200 6200
+Text Label 2200 6200 0    50   ~ 0
+3V3
+$Comp
+L SparkFun-Capacitors:1.0UF-0805-25V-10% C12
+U 1 1 624A431E
+P 6700 7100
+F 0 "C12" H 6808 7245 45  0000 L CNN
+F 1 "1.0UF" H 6808 7161 45  0000 L CNN
+F 2 "Resistor_SMD:R_0805_2012Metric_Pad1.20x1.40mm_HandSolder" H 6700 7350 20  0001 C CNN
+F 3 "" H 6700 7100 50  0001 C CNN
+F 4 "CAP-08064" H 6808 7066 60  0000 L CNN "Field4"
+	1    6700 7100
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	6700 6750 6700 6900
+Wire Wire Line
+	6250 6750 6700 6750
+Wire Wire Line
+	6700 7200 6700 7400
+Wire Wire Line
+	6700 7400 6250 7400
+Connection ~ 6250 6750
+Connection ~ 6250 7400
+Wire Wire Line
+	5150 6150 5150 6050
+Wire Wire Line
+	5150 6450 5150 6550
+Text Label 5150 6550 2    50   ~ 0
+GND
+Text Label 5150 6050 0    50   ~ 0
+5V0
+$Comp
+L SparkFun-Connectors:CONN_04 J18
+U 1 1 625A28E0
+P 3150 6300
+F 0 "J18" H 3108 6910 45  0000 C CNN
+F 1 "CONN_04" H 3108 6826 45  0000 C CNN
+F 2 "Connectors:1X04" H 3150 6800 20  0001 C CNN
+F 3 "" H 3150 6300 50  0001 C CNN
+F 4 "CONN-09696" H 3108 6731 60  0000 C CNN "Field4"
+	1    3150 6300
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	3250 6000 3450 6000
+Wire Wire Line
+	3250 6100 3450 6100
+Wire Wire Line
+	3250 6300 3450 6300
+Text Label 3250 6300 0    50   ~ 0
+GND
+Text Label 3250 6100 0    50   ~ 0
+PICO_I2C1_SDA
+Text Label 3250 6000 0    50   ~ 0
+PICO_I2C1_SCL
+Wire Wire Line
+	3450 6200 3250 6200
+Text Label 3250 6200 0    50   ~ 0
+3V3
+Wire Wire Line
+	6050 6150 6050 6100
+Wire Wire Line
+	6050 6100 6250 6100
+Connection ~ 6250 6100
+Wire Wire Line
+	6250 6100 6250 5950
+Wire Wire Line
+	6050 6450 6050 6500
+Wire Wire Line
+	6050 6500 6250 6500
+Connection ~ 6250 6500
+Wire Wire Line
+	6250 6500 6250 6600
+$Comp
+L SparkFun-Connectors:CONN_03 J11
+U 1 1 627417EC
+P 3950 3050
+F 0 "J11" H 3908 3560 45  0000 C CNN
+F 1 "CONN_03" H 3908 3476 45  0000 C CNN
+F 2 "Connectors:1X03" H 3950 3450 20  0001 C CNN
+F 3 "" H 3950 3050 50  0001 C CNN
+F 4 "XXX-00000" H 3908 3381 60  0000 C CNN "Field4"
+	1    3950 3050
+	1    0    0    -1  
+$EndComp
+$Comp
+L SparkFun-Connectors:CONN_03 J12
+U 1 1 62742A41
+P 4550 3050
+F 0 "J12" H 4508 3560 45  0000 C CNN
+F 1 "CONN_03" H 4508 3476 45  0000 C CNN
+F 2 "Connectors:1X03" H 4550 3450 20  0001 C CNN
+F 3 "" H 4550 3050 50  0001 C CNN
+F 4 "XXX-00000" H 4508 3381 60  0000 C CNN "Field4"
+	1    4550 3050
+	1    0    0    -1  
+$EndComp
+$Comp
+L SparkFun-Connectors:CONN_03 J13
+U 1 1 6274303E
+P 5150 3050
+F 0 "J13" H 5108 3560 45  0000 C CNN
+F 1 "CONN_03" H 5108 3476 45  0000 C CNN
+F 2 "Connectors:1X03" H 5150 3450 20  0001 C CNN
+F 3 "" H 5150 3050 50  0001 C CNN
+F 4 "XXX-00000" H 5108 3381 60  0000 C CNN "Field4"
+	1    5150 3050
+	1    0    0    -1  
+$EndComp
+$Comp
+L Switch:SW_Push SW2
+U 1 1 627744B0
+P 1600 3700
+F 0 "SW2" H 1600 3985 50  0000 C CNN
+F 1 "SW_Push" H 1600 3894 50  0000 C CNN
+F 2 "Button_Switch_SMD:SW_SPST_TL3342" H 1600 3900 50  0001 C CNN
+F 3 "~" H 1600 3900 50  0001 C CNN
+	1    1600 3700
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	1700 4150 2000 4150
+Text Label 6250 6600 2    50   ~ 0
+GND
+Text Label 5250 4450 0    50   ~ 0
+GND
+Text Label 1350 5200 2    50   ~ 0
+GND
+Text Label 1350 5550 2    50   ~ 0
+GND
+Text Label 1350 4850 2    50   ~ 0
+GND
+$Comp
+L Analog_ADC:ADS7828 U2
+U 1 1 6281E5ED
+P 7850 3650
+F 0 "U2" H 7850 4531 50  0000 C CNN
+F 1 "ADS7828" H 7850 4440 50  0000 C CNN
+F 2 "Package_SO:TSSOP-16_4.4x5mm_P0.65mm" H 8800 2950 50  0001 C CNN
+F 3 "http://www.ti.com/lit/ds/symlink/ads7828.pdf" H 7850 3650 50  0001 C CNN
+	1    7850 3650
+	1    0    0    -1  
+$EndComp
+$Comp
+L SparkFun-Capacitors:1.0UF-0805-25V-10% C13
+U 1 1 628BA999
+P 9000 3850
+F 0 "C13" H 9108 3995 45  0000 L CNN
+F 1 "1.0UF" H 9108 3911 45  0000 L CNN
+F 2 "Resistor_SMD:R_0805_2012Metric_Pad1.20x1.40mm_HandSolder" H 9000 4100 20  0001 C CNN
+F 3 "" H 9000 3850 50  0001 C CNN
+F 4 "CAP-08064" H 9108 3816 60  0000 L CNN "Field4"
+	1    9000 3850
+	1    0    0    -1  
+$EndComp
+Text Label 9000 4150 0    50   ~ 0
+GND
+Wire Wire Line
+	8250 3650 8350 3650
+Wire Wire Line
+	8350 3650 8350 3450
+Wire Wire Line
+	8350 3450 9000 3450
+Wire Wire Line
+	9000 3450 9000 3650
+Wire Wire Line
+	9000 3950 9000 4150
+Wire Wire Line
+	7450 3550 7250 3550
+Wire Wire Line
+	8250 3350 9300 3350
+Wire Wire Line
+	9300 2950 9300 2850
+Wire Wire Line
+	9300 2850 9050 2850
+Connection ~ 9050 2850
+Wire Wire Line
+	7850 4600 7450 4600
+Wire Wire Line
+	7450 4600 7450 4150
+Connection ~ 7850 4600
+Wire Wire Line
+	7850 4600 7850 4700
+$Comp
+L SparkFun-Connectors:CONN_04 J19
+U 1 1 62C731D0
+P 7950 2350
+F 0 "J19" H 7908 2960 45  0000 C CNN
+F 1 "CONN_04" H 7908 2876 45  0000 C CNN
+F 2 "Connectors:1X04" H 7950 2850 20  0001 C CNN
+F 3 "" H 7950 2350 50  0001 C CNN
+F 4 "CONN-09696" H 7908 2781 60  0000 C CNN "Field4"
+	1    7950 2350
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	8050 2050 8250 2050
+Wire Wire Line
+	8050 2150 8250 2150
+Wire Wire Line
+	8050 2350 8250 2350
+Text Label 8050 2350 0    50   ~ 0
+GND
+Wire Wire Line
+	8250 2250 8050 2250
+Text Label 8050 2250 0    50   ~ 0
+3V3
+Text Label 8100 2050 0    50   ~ 0
+PICO_I2C0_SCL
+Text Label 8100 2150 0    50   ~ 0
+PICO_I2C0_SDA
+Wire Wire Line
+	8250 4050 8300 4050
+Wire Wire Line
+	8250 4150 8250 4400
+Wire Wire Line
+	8250 4400 8500 4400
+Wire Wire Line
+	8450 3550 8450 3850
+Wire Wire Line
+	8650 3600 8650 4200
+Wire Wire Line
+	8450 4250 8450 4600
+Wire Wire Line
+	8450 4600 8650 4600
+Text Label 8450 4600 0    50   ~ 0
+GND
+$Comp
+L SparkFun-Jumpers:JUMPER-SMT_3_NO JP2
+U 1 1 62D455FF
+P 8650 4400
+F 0 "JP2" H 8754 4495 45  0000 L CNN
+F 1 "JUMPER-SMT_3_NO" H 8754 4411 45  0000 L CNN
+F 2 "Jumpers:SMT-JUMPER_3_NO_SILK" H 8650 4650 20  0001 C CNN
+F 3 "" H 8650 4400 60  0001 C CNN
+F 4 "XXX-00000" H 8754 4316 60  0000 L CNN "PROD_ID"
+	1    8650 4400
+	1    0    0    -1  
+$EndComp
+$Comp
+L SparkFun-Jumpers:JUMPER-SMT_3_NO JP1
+U 1 1 62D6043C
+P 8450 4050
+F 0 "JP1" H 8554 4145 45  0000 L CNN
+F 1 "JUMPER-SMT_3_NO" H 8554 4061 45  0000 L CNN
+F 2 "Jumpers:SMT-JUMPER_3_NO_SILK" H 8450 4300 20  0001 C CNN
+F 3 "" H 8450 4050 60  0001 C CNN
+F 4 "XXX-00000" H 8554 3966 60  0000 L CNN "PROD_ID"
+	1    8450 4050
+	1    0    0    -1  
+$EndComp
+$EndSCHEMATC
