@@ -4,9 +4,10 @@
     "version": "2.0.0",
     "tasks": [
         {
-            "label": "echo",
+            "label": "deployto2040",
             "type": "shell",
-            "command": "copy ${file} D:/code.py"
+            "command": "${workspaceFolder}/firmware/scripts/deploy.bat ${fileDirname}",
+            "problemMatcher": []
         }
     ]
 }
