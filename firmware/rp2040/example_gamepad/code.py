@@ -14,93 +14,86 @@ import displayio
 import terminalio
 import digitalio
 import analogio
+import adafruit_matrixkeypad
+from adafruit_seesaw import seesaw, rotaryio
+from adafruit_seesaw import digitalio as seesaw_digitalio
 
 import usb_hid
 from hid_gamepad import Gamepad
 
-# can try import bitmap_label below for alternative
-from adafruit_display_text import label
-import adafruit_displayio_sh1107
-
+#######################
+# Define functions
+#######################
 def range_map(value, in_min, in_max, out_min, out_max):
     return (value - in_min) * (out_max - out_min) // (in_max - in_min) + out_min
 
-displayio.release_displays()
-# oled_reset = board.D9
+print("SETTING UP CONFIG")
 
-# Use for I2C
+#######################
+# Set up external interfaces
+#######################
 i2c = board.I2C()
-display_bus = displayio.I2CDisplay(i2c, device_address=0x3C)
 
-# SH1107 is vertically oriented 64x128
-WIDTH = 128
-HEIGHT = 64
-BORDER = 2
-
-# Terminal parameters
-DISP_LINES = 6
-DISP_OFFSET = 4
-DISP_SPACING = 10
-
-display = adafruit_displayio_sh1107.SH1107(
-    display_bus, width=WIDTH, height=HEIGHT, rotation=0, auto_refresh=True
-)
-
-# Make the display context
-#splash = displayio.Group()
-#display.show(splash)
-#display.refresh(minimum_frames_per_second=10)
-
+#######################
 # Set up USB HID Gamepad
+#######################
 gp = Gamepad(usb_hid.devices)
 
-# Set up IO
-pb_a = digitalio.DigitalInOut(board.D9)
-pb_a.direction = digitalio.Direction.INPUT
-pb_a.pull = digitalio.Pull.UP
+#######################
+# Raw IO to HID
+#######################
+NUM_BUTTOMS = 16
+button_values = []
 
-pb_b = digitalio.DigitalInOut(board.D6)
-pb_b.direction = digitalio.Direction.INPUT
-pb_b.pull = digitalio.Pull.UP
+NUM_AXES = 4
+axis_values = []
 
-pb_c = digitalio.DigitalInOut(board.D5)
-pb_c.direction = digitalio.Direction.INPUT
-pb_c.pull = digitalio.Pull.UP
+#######################
+# Set hardware IO
+#######################
+# On board GPI
+NUM_GPI = 1
+gpi = []
+gpi.append(digitalio.DigitalInOut(board.D4))
+gpi[0].direction = digitalio.Direction.INPUT
+gpi[0].pull = digitalio.Pull.UP
 
-ts_a = digitalio.DigitalInOut(board.D10)
-ts_a.direction = digitalio.Direction.INPUT
-ts_a.pull = digitalio.Pull.UP
+# On board ADCs
+NUM_ANALOG = 1
+analog_values = []
+adc = []
+adc.append(analogio.AnalogIn(board.A0)) #0
+#adc = analogio.AnalogIn(board.A0)
 
-pot_a = analogio.AnalogIn(board.A0)
+# Key matrix
+# C2 R1 C1 R4  C3  R3  R2
+# D5 D6 D9 D10 D11 D12 D13
+cols = [digitalio.DigitalInOut(x) for x in (board.D9, board.D5, board.D11)]
+rows = [digitalio.DigitalInOut(x) for x in (board.D6, board.D13, board.D12, board.D10)]
+keys = ((1, 2, 3),
+        (4, 5, 6),
+        (7, 8, 9),
+        ('*', 0, '#'))
+keypad = adafruit_matrixkeypad.Matrix_Keypad(rows, cols, keys)
 
-led_a = 1
-led_b = 1
-led_c = 1
+# Rotary encoder stemma
+seesaw = seesaw.Seesaw(board.I2C(), addr=0x36)
+seesaw_product = (seesaw.get_version() >> 16) & 0xFFFF
+print("Found product {}".format(seesaw_product))
+if seesaw_product != 4991:
+    print("Wrong firmware loaded?  Expected 4991")
+seesaw.pin_mode(24, seesaw.INPUT_PULLUP)
+seesaw_button = seesaw_digitalio.DigitalIO(seesaw, 24)
 
+encoder = rotaryio.IncrementalEncoder(seesaw)
+new_position = -encoder.position
+
+# Debug
 counter = 0
 counter_str = str(counter)
 
-"""
-# Draw some label text
-text1 = "Panel Helloworld"  # overly long to see where it clips
-text_area1 = label.Label(terminalio.FONT, text=text1, color=0xFFFFFF, x=4, y=DISP_OFFSET+DISP_SPACING*0)
-splash.append(text_area1)
-text2 = "Drew Coker"
-text_area2 = label.Label(terminalio.FONT, text=text2, color=0xFFFFFF, x=4, y=DISP_OFFSET+DISP_SPACING*1)
-splash.append(text_area2)
-text3 = ""
-text_area3 = label.Label(terminalio.FONT, text=text3, color=0xFFFFFF, x=4, y=DISP_OFFSET+DISP_SPACING*2)
-splash.append(text_area3)
-text4 = ""
-text_area4 = label.Label(terminalio.FONT, text=text4, color=0xFFFFFF, x=4, y=DISP_OFFSET+DISP_SPACING*3)
-splash.append(text_area4)
-text5 = ""
-text_area5 = label.Label(terminalio.FONT, text=text5, color=0xFFFFFF, x=4, y=DISP_OFFSET+DISP_SPACING*4)
-splash.append(text_area5)
-text6 = ""
-text_area6 = label.Label(terminalio.FONT, text=text6, color=0xFFFFFF, x=4, y=DISP_OFFSET+DISP_SPACING*5)
-splash.append(text_area6)
-"""
+print("COMPLETE")
+
 time.sleep(1)
 
 while True:
@@ -108,37 +101,62 @@ while True:
     counter = counter + 1
     counter_str = str(counter)
 
-    led_a = 1
-    led_b = 1
-    led_c = 1
+    keys = keypad.pressed_keys
+    
+    old_position = new_position
+    new_position = -encoder.position
+    if new_position > old_position:
+        encoder_incr = True
+        encoder_decr = False
+    elif new_position < old_position:
+        encoder_incr = False
+        encoder_decr = True
+    else:
+        encoder_incr = False
+        encoder_decr = False
+    
+    #range_map(analog[0].value,0,65535,-127,127)
+    axis_values = []
+    axis_values.append(range_map(adc[0].value,0,65535,-127,127))
+    axis_values.append(range_map(adc[0].value,0,65535,-127,127))
+    axis_values.append(range_map(adc[0].value,0,65535,-127,127))
+    axis_values.append(range_map(adc[0].value,0,65535,-127,127))
 
-    # Update strings for display
-    pb_a_str = str(int(pb_a.value))
-    pb_b_str = str(int(pb_b.value))
-    pb_c_str = str(int(pb_c.value))
-    ts_a_str = str(int(ts_a.value))
-    pot_a_str = str(pot_a.value)
-    led_a_str = str(led_a)
-    led_b_str = str(led_b)
-    led_c_str = str(led_c)
+    button_values = []
+    button_values.append(0 in keys)             #0
+    button_values.append(1 in keys)             #1
+    button_values.append(2 in keys)             #2
+    button_values.append(3 in keys)             #3
+    button_values.append(4 in keys)             #4
+    button_values.append(5 in keys)             #5
+    button_values.append(6 in keys)             #6
+    button_values.append(7 in keys)             #7
+    button_values.append(8 in keys)             #8
+    button_values.append(9 in keys)             #9
+    button_values.append("*" in keys)           #10
+    button_values.append("#" in keys)           #11
+    button_values.append(gpi[0].value)          #12, Toggle switch
+    button_values.append(not seesaw_button.value)   #13, i2c rotary push button
+    button_values.append(encoder_incr)          #14
+    button_values.append(encoder_decr)          #15
 
     # Update connection
     HID_str = "DEADBEEF"
 
     # Debug
-    print(pb_a_str + " " + pb_b_str + " " + pb_c_str + " " + ts_a_str + " " + pot_a_str)
+    #print("Buttons: {}".format(button_values[0].value))
+    #print("Analog: {}".format(axis_values[0]))
 
-    # Update display layers
-    """
-    text_area1.text = "Panel Debug"
-    text_area2.text = "PBS A: " + pb_a_str + ", B: " + pb_b_str + " C: " + pb_c_str
-    text_area3.text = "LED A: " + led_a_str + ", B: " + led_b_str + " C: " + led_c_str
-    text_area4.text = "TS A: " + ts_a_str + ", POT A: " + pot_a_str
-    text_area5.text = "HID:" + HID_str
-    text_area6.text = "COUNTER: " + counter_str
-    """
-    gp.move_joysticks(x=range_map(pot_a.value,0,65535,-127,127))
+    gp.move_joysticks(axis_values[0],axis_values[1],axis_values[2],axis_values[3])
 
+    for ii,  button_value in enumerate(button_values):
+        if button_value:
+            print("BUTTON PRESS: {}".format(ii))
+            gp.press_buttons(ii+1) #zero indexing is better
+        else:
+            gp.press_buttons(ii+1)
+
+    """
     if pb_a.value:
         gp.release_buttons(1)
     else:
@@ -158,8 +176,6 @@ while True:
         gp.release_buttons(4)
     else:
         gp.press_buttons(4)
-
-    #display.refresh()
-
+    """
     # Don't update too often
-    time.sleep(0.01)
+    time.sleep(0.1)
