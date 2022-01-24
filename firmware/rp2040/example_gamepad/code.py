@@ -15,8 +15,12 @@ import terminalio
 import digitalio
 import analogio
 import adafruit_matrixkeypad
+import neopixel
 from adafruit_seesaw import seesaw, rotaryio
 from adafruit_seesaw import digitalio as seesaw_digitalio
+from adafruit_seesaw import neopixel as seesaw_neopixel
+from adafruit_ht16k33 import segments
+
 
 import usb_hid
 from hid_gamepad import Gamepad
@@ -65,7 +69,7 @@ adc = []
 adc.append(analogio.AnalogIn(board.A0)) #0
 #adc = analogio.AnalogIn(board.A0)
 
-# Key matrix
+# Key matrix 3x4
 # C2 R1 C1 R4  C3  R3  R2
 # D5 D6 D9 D10 D11 D12 D13
 cols = [digitalio.DigitalInOut(x) for x in (board.D9, board.D5, board.D11)]
@@ -76,7 +80,7 @@ keys = ((1, 2, 3),
         ('*', 0, '#'))
 keypad = adafruit_matrixkeypad.Matrix_Keypad(rows, cols, keys)
 
-# Rotary encoder stemma
+# Rotary encoder seesaw
 seesaw = seesaw.Seesaw(board.I2C(), addr=0x36)
 seesaw_product = (seesaw.get_version() >> 16) & 0xFFFF
 print("Found product {}".format(seesaw_product))
@@ -87,6 +91,23 @@ seesaw_button = seesaw_digitalio.DigitalIO(seesaw, 24)
 
 encoder = rotaryio.IncrementalEncoder(seesaw)
 new_position = -encoder.position
+
+# 4digit alphanumeric display
+alphanum_disp = segments.Seg14x4(i2c)
+alphanum_disp.fill(0)
+alphanum_disp.brightness = 1.0
+alphanum_disp.print("12AB")
+
+# Neopixels
+encoder_pixel = seesaw_neopixel.NeoPixel(seesaw,6,1)
+encoder_pixel.brightness = 0.5
+encoder_pixel.fill((255,0,0))
+encoder_pixel.show()
+
+onboard_pixel = neopixel.NeoPixel(board.NEOPIXEL, 1)
+onboard_pixel.brightness = 0.5
+onboard_pixel.fill((0,255,0))
+onboard_pixel.show()
 
 # Debug
 counter = 0
@@ -154,7 +175,7 @@ while True:
             print("BUTTON PRESS: {}".format(ii))
             gp.press_buttons(ii+1) #zero indexing is better
         else:
-            gp.press_buttons(ii+1)
+            gp.release_buttons(ii+1)
 
     """
     if pb_a.value:
