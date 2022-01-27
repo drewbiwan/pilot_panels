@@ -8,6 +8,7 @@ background, a smaller black rectangle, miscellaneous stuff and some white text.
 
 """
 
+# CircuitPython Libraries
 import time
 import board
 import displayio
@@ -16,14 +17,16 @@ import digitalio
 import analogio
 import adafruit_matrixkeypad
 import neopixel
+import usb_hid
+import struct
 from adafruit_seesaw import seesaw, rotaryio
 from adafruit_seesaw import digitalio as seesaw_digitalio
 from adafruit_seesaw import neopixel as seesaw_neopixel
 from adafruit_ht16k33 import segments
+from adafruit_hid import find_device
 
-
-import usb_hid
-from hid_gamepad import Gamepad
+# Local Files
+# from hid_pp_generic import pp_gamepad
 
 #######################
 # Define functions
@@ -41,15 +44,17 @@ i2c = board.I2C()
 #######################
 # Set up USB HID Gamepad
 #######################
-gp = Gamepad(usb_hid.devices)
+gp = find_device(usb_hid.devices, usage_page=0x1, usage=0x05)
 
 #######################
 # Raw IO to HID
 #######################
-NUM_BUTTOMS = 16
+hid_report = bytearray(10)
+hid_report_last = bytearray(10)
+NUM_BUTTOMS = 32
 button_values = []
 
-NUM_AXES = 4
+NUM_AXES = 6
 axis_values = []
 
 #######################
@@ -136,8 +141,10 @@ while True:
         encoder_incr = False
         encoder_decr = False
     
-    #range_map(analog[0].value,0,65535,-127,127)
+    # Map Values to HID 
     axis_values = []
+    axis_values.append(range_map(adc[0].value,0,65535,-127,127))
+    axis_values.append(range_map(adc[0].value,0,65535,-127,127))
     axis_values.append(range_map(adc[0].value,0,65535,-127,127))
     axis_values.append(range_map(adc[0].value,0,65535,-127,127))
     axis_values.append(range_map(adc[0].value,0,65535,-127,127))
@@ -161,42 +168,63 @@ while True:
     button_values.append(encoder_incr)          #14
     button_values.append(encoder_decr)          #15
 
-    # Update connection
-    HID_str = "DEADBEEF"
+    button_values.append(encoder_decr)          #16
+    button_values.append(encoder_decr)          #17
+    button_values.append(encoder_decr)          #18
+    button_values.append(encoder_decr)          #19
+    button_values.append(encoder_decr)          #20
+    button_values.append(encoder_decr)          #21
+    button_values.append(encoder_decr)          #22
+    button_values.append(encoder_decr)          #23
+    button_values.append(encoder_decr)          #24
+    button_values.append(encoder_decr)          #25
+    button_values.append(encoder_decr)          #26
+    button_values.append(encoder_decr)          #27
+    button_values.append(encoder_decr)          #28
+    button_values.append(encoder_decr)          #29
+    button_values.append(encoder_decr)          #30
+    button_values.append(encoder_decr)          #31
 
-    # Debug
-    #print("Buttons: {}".format(button_values[0].value))
-    #print("Analog: {}".format(axis_values[0]))
+    # Map HID to raw words
+    button_hid_words = []
+    word = 0
+    for kk in range (0,2):
+        word = 0
+        for ii in range(0,16): #16 buttons per word
+            word = word | (button_values[ii+kk*16] << ii)
+        button_hid_words.append(word)
+        #print(word)
 
-    gp.move_joysticks(axis_values[0],axis_values[1],axis_values[2],axis_values[3])
 
+    struct.pack_into(
+        "<HHbbbbbb",
+        hid_report,
+        0,
+        button_hid_words[0],
+        button_hid_words[1],
+        axis_values[0],
+        axis_values[1],
+        axis_values[2],
+        axis_values[3],
+        axis_values[4],
+        axis_values[5],
+    )
+
+    #send report
+    if True | (hid_report_last != hid_report):
+        print(hid_report)
+        gp.send_report(hid_report)
+        hid_report_last = hid_report
+
+    # Use Class to send report
+    """
+    gp.move_joysticks(axis_values[0],axis_values[1],axis_values[2],axis_values[3],axis_values[4],axis_values[5])
     for ii,  button_value in enumerate(button_values):
         if button_value:
-            print("BUTTON PRESS: {}".format(ii))
+            #print("BUTTON PRESS: {}".format(ii))
             gp.press_buttons(ii+1) #zero indexing is better
         else:
             gp.release_buttons(ii+1)
-
-    """
-    if pb_a.value:
-        gp.release_buttons(1)
-    else:
-        gp.press_buttons(1)
-
-    if pb_b.value:
-        gp.release_buttons(2)
-    else:
-        gp.press_buttons(2)
-
-    if pb_c.value:
-        gp.release_buttons(3)
-    else:
-        gp.press_buttons(3)
-
-    if ts_a.value:
-        gp.release_buttons(4)
-    else:
-        gp.press_buttons(4)
     """
     # Don't update too often
     time.sleep(0.1)

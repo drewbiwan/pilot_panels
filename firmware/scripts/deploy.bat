@@ -5,5 +5,4 @@ REM @echo off
 ren D:\code.py D:\old_code.py
 ren D:\boot.py D:\old_boot.py
 
-copy %1\code.py D:\
-copy %1\boot.py D:\
+copy %1\*.py D:\
