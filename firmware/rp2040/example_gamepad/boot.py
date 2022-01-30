@@ -7,8 +7,9 @@ print("1/30/2022 1000")
 PP_GENERIC_REPORT_DESCRIPTOR = bytes((
     0x05, 0x01,  #  Usage Page (Generic Desktop Ctrls)
     0x09, 0x05,  #  Usage (Gamepad)
-    0xA1, 0x01,  #  Collection (Application)
+    0xA1, 0x01,  #    Collection (Application)
     0xA1, 0x00,  #      Collection (Physcial)
+    0x85, 0x01,  #          Report ID (4)
     0x05, 0x09,  #          Usage Page (Button)
     0x19, 0x01,  #          Usage Minimum (Button 1)
     0x29, 0x20,  #          Usage Maximum (Button 32)
@@ -18,7 +19,7 @@ PP_GENERIC_REPORT_DESCRIPTOR = bytes((
     0x95, 0x20,  #          Report Count (32)
     0x81, 0x02,  #          Input (Data,Var,Abs,No Wrap,Linear,Preferred State,No Null Position)
     0xC0,        #      End Collection
-    0xC0,        #  End Collection
+    0xC0,        #    End Collection
 ))
 
 
@@ -58,7 +59,7 @@ gamepad = usb_hid.Device(
     report_descriptor=PP_GENERIC_REPORT_DESCRIPTOR,
     usage_page=0x01,           # Generic Desktop Control
     usage=0x05,                # Gamepad
-    report_ids=(1,),           # Descriptor uses report ID 4.
+    report_ids=(4,),           # Descriptor uses report ID 4.
     in_report_lengths=(4,),    # This gamepad sends 6 bytes in its report.
     out_report_lengths=(0,),   # It does not receive any reports.
 )
