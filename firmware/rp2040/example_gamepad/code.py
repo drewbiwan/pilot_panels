@@ -52,8 +52,8 @@ gp = find_device(usb_hid.devices, usage_page=0x1, usage=0x05)
 button_hid_report = bytearray(4)
 button_hid_report_last = bytearray(4)
 
-analog_hid_report = bytearray(6)
-analog_hid_report_last = bytearray(6)
+analog_hid_report = bytearray(8)
+analog_hid_report_last = bytearray(8)
 
 NUM_BUTTOMS = 32
 button_values = []
@@ -127,6 +127,7 @@ print("COMPLETE")
 time.sleep(1)
 
 while True:
+    now = time.monotonic()
     #update IO, strings
     counter = counter + 1
     counter_str = str(counter)
@@ -210,7 +211,7 @@ while True:
         button_hid_words[1]
     )
     struct.pack_into(
-        "<bbbbbb",
+        "<bbbbbbbb",
         analog_hid_report,
         0,
         axis_values[0],
@@ -218,15 +219,19 @@ while True:
         axis_values[2],
         axis_values[3],
         axis_values[4],
-        axis_values[5]
+        axis_values[5],
+        axis_values[6],
+        axis_values[7]
     )
 
     #send report
-    print("NEW REPORT:")
-    print(button_hid_report)
-    print(analog_hid_report)
+    #print(button_hid_report)
+    #print(analog_hid_report)
     gp.send_report(button_hid_report,1)
     gp.send_report(analog_hid_report,2)
+
+    
+    print(time.monotonic()-now)
 
     """
     if True | (hid_report_last != hid_report):

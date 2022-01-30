@@ -32,10 +32,12 @@ PP_GENERIC_REPORT_DESCRIPTOR = bytes((
     0x09, 0x33,                     #   Usage (Rx)
     0x09, 0x34,                     #   Usage (Ry)
     0x09, 0x35,                     #   Usage (Rz)
+    0x09, 0x36,                     #   Usage (Slider)
+    0x09, 0x36,                     #   Usage (Slider)
     0x15, 0x81,                     #   Logical Minimum (-127)
     0x25, 0x7F,                     #   Logical Maximum (127)
     0x75, 0x08,                     #   Report Size (8)
-    0x95, 0x06,                     #   Report Count (6)
+    0x95, 0x08,                     #   Report Count (8)
     0x81, 0x02,                     #   Input (Data,Var,Abs,No Wrap,Linear,Preferred State,No Null Position)
     0xc0,                           #   END_COLLECTION
     0xc0,                           # END_COLLECTION
@@ -46,7 +48,7 @@ gamepad = usb_hid.Device(
     usage_page=0x01,           # Generic Desktop Control
     usage=0x05,                # Gamepad
     report_ids=(1,2,),           # Descriptor uses report ID 4.
-    in_report_lengths=(4,6,),    # This gamepad sends 6 bytes in its report.
+    in_report_lengths=(4,8,),    # This gamepad sends 6 bytes in its report.
     out_report_lengths=(0,0,),   # It does not receive any reports.
 )
 
