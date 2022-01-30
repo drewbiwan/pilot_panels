@@ -49,8 +49,12 @@ gp = find_device(usb_hid.devices, usage_page=0x1, usage=0x05)
 #######################
 # Raw IO to HID
 #######################
-hid_report = bytearray(10)
-hid_report_last = bytearray(10)
+button_hid_report = bytearray(4)
+button_hid_report_last = bytearray(4)
+
+analog_hid_report = bytearray(6)
+analog_hid_report_last = bytearray(6)
+
 NUM_BUTTOMS = 32
 button_values = []
 
@@ -149,6 +153,8 @@ while True:
     axis_values.append(range_map(adc[0].value,0,65535,-127,127))
     axis_values.append(range_map(adc[0].value,0,65535,-127,127))
     axis_values.append(range_map(adc[0].value,0,65535,-127,127))
+    axis_values.append(range_map(adc[0].value,0,65535,-127,127))
+    axis_values.append(range_map(adc[0].value,0,65535,-127,127))
 
     button_values = []
     button_values.append(0 in keys)             #0
@@ -197,24 +203,37 @@ while True:
 
 
     struct.pack_into(
-        "<HHbbbbbb",
-        hid_report,
+        "<HH",
+        button_hid_report,
         0,
         button_hid_words[0],
-        button_hid_words[1],
+        button_hid_words[1]
+    )
+    struct.pack_into(
+        "<bbbbbb",
+        analog_hid_report,
+        0,
         axis_values[0],
         axis_values[1],
         axis_values[2],
         axis_values[3],
         axis_values[4],
-        axis_values[5],
+        axis_values[5]
     )
 
     #send report
+    print("NEW REPORT:")
+    print(button_hid_report)
+    print(analog_hid_report)
+    gp.send_report(button_hid_report,1)
+    gp.send_report(analog_hid_report,2)
+
+    """
     if True | (hid_report_last != hid_report):
         print(hid_report)
         gp.send_report(hid_report)
         hid_report_last = hid_report
+        """
 
     # Use Class to send report
     """
