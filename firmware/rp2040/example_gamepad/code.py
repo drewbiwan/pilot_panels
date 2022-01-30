@@ -226,7 +226,7 @@ while True:
     print(button_hid_report)
     print(analog_hid_report)
     gp.send_report(button_hid_report,1)
-    gp.send_report(analog_hid_report,2)
+    #gp.send_report(analog_hid_report,2)
 
     """
     if True | (hid_report_last != hid_report):
