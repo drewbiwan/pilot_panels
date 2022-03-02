@@ -1,3 +1,6 @@
 ADMOD
 	Analog connectors have diffent layouts
-	Analog inputs should have footprints for caps
+	Analog inputs optional RC filter
+	Digital inputs optional load, cap
+	I2C1 should have pullup resistors
+	
