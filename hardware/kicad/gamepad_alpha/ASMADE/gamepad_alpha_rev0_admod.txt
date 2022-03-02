@@ -1,0 +1,3 @@
+ADMOD
+	Analog connectors have diffent layouts
+	Analog inputs should have footprints for caps
