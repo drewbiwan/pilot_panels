@@ -1,18 +1,15 @@
-# SPDX-FileCopyrightText: 2021 ladyada for Adafruit Industries
-#
-# SPDX-License-Identifier: Unlicense
 """
-Author: Mark Roberts (mdroberts1243) from Adafruit code
-This test will initialize the display using displayio and draw a solid white
-background, a smaller black rectangle, miscellaneous stuff and some white text.
+File: code.py
+Description: Custom HID gamepad
+Author: Drew Coker
+Date: March 2022
 
 """
 
 # CircuitPython Libraries
 import time
 import board
-import displayio
-import terminalio
+import busio
 import digitalio
 import analogio
 import usb_hid
@@ -30,10 +27,6 @@ def range_map(value, in_min, in_max, out_min, out_max):
 
 print("SETTING UP CONFIG")
 
-#######################
-# Set up external interfaces
-#######################
-#i2c = board.I2C()
 
 #######################
 # Set up USB HID Gamepad
@@ -56,14 +49,26 @@ NUM_AXES = 6
 axis_values = []
 
 #######################
+# Set up external interfaces
+#######################
+i2c0 = busio.I2C(board.GP21,board.GP20) #on board ADC on this bus
+# i2c1 = busio.I2C(board.GP19,board.GP18) #qwiic connector
+
+#######################
 # Set hardware IO
 #######################
 # On board GPI
 NUM_GPI = 1
-gpi = []
+gpi = [] #for parsing/interface
+gpi_string = [] #for power up report
+gpi_ind = 0
+
 gpi.append(digitalio.DigitalInOut(board.GP0))
-gpi[0].direction = digitalio.Direction.INPUT
-gpi[0].pull = digitalio.Pull.UP
+gpi_string.append('PICO GPI 0')
+gpi[gpi_ind].direction = digitalio.Direction.INPUT
+gpi[gpi_ind].pull = digitalio.Pull.UP
+gpi_ind = gpi_ind + 1
+
 gpi.append(digitalio.DigitalInOut(board.GP1))
 gpi[1].direction = digitalio.Direction.INPUT
 gpi[1].pull = digitalio.Pull.UP
@@ -73,7 +78,7 @@ gpi[2].pull = digitalio.Pull.UP
 gpi.append(digitalio.DigitalInOut(board.GP3))
 gpi[3].direction = digitalio.Direction.INPUT
 gpi[3].pull = digitalio.Pull.UP
-gpi.append(digitalio.DigitalInOut(board.GP22)) #onboard reset
+gpi.append(digitalio.DigitalInOut(board.GP22)) #onboard pushbutton
 gpi[4].direction = digitalio.Direction.INPUT
 gpi[4].pull = digitalio.Pull.UP
 
@@ -81,7 +86,9 @@ gpi[4].pull = digitalio.Pull.UP
 NUM_ANALOG = 1
 analog_values = []
 adc = []
+adc_string = []
 adc.append(analogio.AnalogIn(board.A0)) #0
+adc_string.append('PICO A0')
 adc.append(analogio.AnalogIn(board.A1)) #1
 adc.append(analogio.AnalogIn(board.A2)) #2
 #adc = analogio.AnalogIn(board.A0)
