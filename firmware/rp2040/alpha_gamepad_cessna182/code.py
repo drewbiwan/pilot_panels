@@ -15,15 +15,97 @@ import analogio
 import usb_hid
 import struct
 from adafruit_hid import find_device
+import asyncio as uasyncio
 
 # Local Files
 # from hid_pp_generic import pp_gamepad
 
 #######################
+# Define Parameters
+#######################
+BUILD_STR = "Generic Gamepad"
+
+logical_update_ms = 10 #update rate for logical io
+analog_update_ms = 50 #update rate for analog io
+serial_update_ms = 100 #time between serial parse updates
+
+#######################
+# Define Classes #TODO: MOVE TO ANOTHER FILES
+#######################
+class leds:
+    def __init__(self,pin):
+        self.pin = pin
+
+class gpi_pins_c:
+    def __init__(self):
+        self.pins = []
+        self.strings = []
+        self.len = 0
+        self.values = []
+        self.values_old = []
+
+    def add(self,pin,string):
+        self.pins.append(pin)
+        self.strings.append(string)
+        self.len = len(self.pins)
+        self.values.append(False)
+        self.values_old.append(False)
+        pin.direction = digitalio.Direction.INPUT
+        pin.pull = digitalio.Pull.UP
+
+    def get_string(self,ind):
+        return self.strings[ind]
+
+    def get_value(self,ind):
+        return self.values[ind]
+
+    def update_values(self):
+        self.values_old = self.values
+        for ind in range(self.len):
+            pin = self.pins[ind]
+            self.values[ind] = pin.value
+
+    def print_values(self):
+        print("GPI Values:")
+        for ind in range(self.len):
+            print("\t" + self.strings[ind] + "\t=" + str(self.values[ind]))
+
+
+#######################
 # Define functions
 #######################
+# re-range for adc inputs
 def range_map(value, in_min, in_max, out_min, out_max):
     return (value - in_min) * (out_max - out_min) // (in_max - in_min) + out_min
+
+# Status LED loop
+async def blink(led,period_ms): 
+    while True:
+        led.value = True
+        await uasyncio.sleep_ms(period_ms)
+        led.value = False
+        await uasyncio.sleep_ms(period_ms)
+
+async def print_status(gpi_pins,period_ms): 
+    while True:
+        gpi_pins.print_values()
+        await uasyncio.sleep_ms(period_ms)
+
+async def update_digital_report(gpi_pins,usb_device,period_ms): 
+    button_hid_report = bytearray(4)
+    while True:
+        button_hid_report_last = button_hid_report
+        gpi_pins.update_values()
+        button_hid_report = pack_report(button_hid_report,gpi_pins)
+        usb_device.send_report(button_hid_report,1)
+        await uasyncio.sleep_ms(period_ms)
+
+async def main_loop(usb_gp,gpi_pins,led_pins):
+    digital_task = uasyncio.create_task(update_digital_report(usb_gp,gpi_pins,10))
+    blink_task = uasyncio.create_task(blink(led_pins,500))
+    print_task = uasyncio.create_task(print_status(gpi_pins,1000))
+    await uasyncio.gather(digital_task,blink_task,print_task)
+
 
 
 #######################
@@ -34,11 +116,10 @@ print("--------------------")
 print("Power up configuration")
 print("--------------------")
 
-
 #######################
 # Set up USB HID Gamepad
 #######################
-gp = find_device(usb_hid.devices, usage_page=0x1, usage=0x05)
+usb_gp = find_device(usb_hid.devices, usage_page=0x1, usage=0x05)
 
 #######################
 # Raw IO to HID
@@ -56,47 +137,38 @@ NUM_AXES = 6
 axis_values = []
 
 #######################
-# Set up external interfaces
+# Set up External Serial Interfaces
 #######################
 i2c0 = busio.I2C(board.GP21,board.GP20) #on board ADC on this bus
 # i2c1 = busio.I2C(board.GP19,board.GP18) #qwiic connector
 
 #######################
-# Set hardware IO
+# Set up Digital Inputs
 #######################
-# On board GPI
-NUM_GPI = 1
-gpi = [] #for parsing/interface
-gpi_string = [] #for power up report
-gpi_ind = 0
+gpi_pins = gpi_pins_c()
+gpi_pins.add(digitalio.DigitalInOut(board.GP0),'GP0')
+gpi_pins.add(digitalio.DigitalInOut(board.GP1),'GP1')
+gpi_pins.add(digitalio.DigitalInOut(board.GP2),'GP2')
+gpi_pins.add(digitalio.DigitalInOut(board.GP3),'GP3')
+gpi_pins.add(digitalio.DigitalInOut(board.GP4),'GP4')
+gpi_pins.add(digitalio.DigitalInOut(board.GP5),'GP5')
+gpi_pins.add(digitalio.DigitalInOut(board.GP6),'GP6')
+gpi_pins.add(digitalio.DigitalInOut(board.GP7),'GP7')
+gpi_pins.add(digitalio.DigitalInOut(board.GP8),'GP8')
+gpi_pins.add(digitalio.DigitalInOut(board.GP9),'GP9')
+gpi_pins.add(digitalio.DigitalInOut(board.GP10),'GP10')
+gpi_pins.add(digitalio.DigitalInOut(board.GP11),'GP11')
+gpi_pins.add(digitalio.DigitalInOut(board.GP12),'GP12')
+gpi_pins.add(digitalio.DigitalInOut(board.GP13),'GP13')
+gpi_pins.add(digitalio.DigitalInOut(board.GP14),'GP14')
+gpi_pins.add(digitalio.DigitalInOut(board.GP15),'GP15')
+gpi_pins.add(digitalio.DigitalInOut(board.GP22),'ONBRD PB')
 
-gpi.append(digitalio.DigitalInOut(board.GP0))
-gpi_string.append('PICO GPI 0: PLACEHOLDER SPST TOGGLE')
-gpi[gpi_ind].direction = digitalio.Direction.INPUT
-gpi[gpi_ind].pull = digitalio.Pull.UP
-gpi_ind = gpi_ind + 1
-gpi.append(digitalio.DigitalInOut(board.GP1))
-gpi_string.append('PICO GPI 1: PLACEHOLDER')
-gpi[gpi_ind].direction = digitalio.Direction.INPUT
-gpi[gpi_ind].pull = digitalio.Pull.UP
-gpi_ind = gpi_ind + 1
-gpi.append(digitalio.DigitalInOut(board.GP2))
-gpi_string.append('PICO GPI 2: PLACEHOLDER')
-gpi[gpi_ind].direction = digitalio.Direction.INPUT
-gpi[gpi_ind].pull = digitalio.Pull.UP
-gpi_ind = gpi_ind + 1
-gpi.append(digitalio.DigitalInOut(board.GP3))
-gpi_string.append('PICO GPI 3: PLACEHOLDER')
-gpi[gpi_ind].direction = digitalio.Direction.INPUT
-gpi[gpi_ind].pull = digitalio.Pull.UP
-gpi_ind = gpi_ind + 1
-gpi.append(digitalio.DigitalInOut(board.GP22)) #onboard pushbutton
-gpi_string.append('PICO GPI 22: ONBOARD PUSHBUTTON')
-gpi[gpi_ind].direction = digitalio.Direction.INPUT
-gpi[gpi_ind].pull = digitalio.Pull.UP
-gpi_ind = gpi_ind + 1
+gpi_pins.update_values()
 
-# On board ADCs
+#######################
+# Set up Analog Inputs
+#######################
 NUM_ANALOG = 1
 analog_values = []
 adc = []
@@ -109,23 +181,47 @@ adc.append(analogio.AnalogIn(board.A2)) #2
 adc_string.append('PICO A2: PLACEHOLDER')
 #adc = analogio.AnalogIn(board.A0)
 
-# Debug
+#######################
+# Set up Digital Outputs
+#######################
+blinky_led = digitalio.DigitalInOut(board.LED)
+blinky_led.direction = digitalio.Direction.OUTPUT
+blinky_led.value = True
+
+#######################
+# Set up Debug
+#######################
 counter = 0
 counter_str = str(counter)
 
+#######################
+# Report Status
+#######################
 print("--------------------")
 print("Hardware Report")
 print("--------------------")
-print("GPIO Mapping:")
-for ii in range(len(gpi)):
-    print("\t" + gpi_string[ii])
+gpi_pins.print_values()
 
 print("ADC Mapping:")
 for ii in range(len(adc)):
     print("\t" + adc_string[ii])
-time.sleep(1)
 
+#######################
+# Start Async loop
+#######################
+print("--------------------")
+print("Entering ASYNC Loop")
+print("--------------------")
 
+while (True):
+    uasyncio.run(main_loop(usb_gp,gpi_pins,blinky_led,1))
+    
+
+print("--------------------")
+print("Program Exiting...")
+print("--------------------")
+
+""" 
 print("--------------------")
 print("Entering HID mode")
 print("--------------------")
@@ -221,23 +317,27 @@ while True:
     gp.send_report(analog_hid_report,2)
 
     #print(time.monotonic()-now)
+"""
 
+"""
+if True | (hid_report_last != hid_report):
+    print(hid_report)
+    gp.send_report(hid_report)
+    hid_report_last = hid_report
     """
-    if True | (hid_report_last != hid_report):
-        print(hid_report)
-        gp.send_report(hid_report)
-        hid_report_last = hid_report
-        """
 
-    # Use Class to send report
-    """
-    gp.move_joysticks(axis_values[0],axis_values[1],axis_values[2],axis_values[3],axis_values[4],axis_values[5])
-    for ii,  button_value in enumerate(button_values):
-        if button_value:
-            #print("BUTTON PRESS: {}".format(ii))
-            gp.press_buttons(ii+1) #zero indexing is better
-        else:
-            gp.release_buttons(ii+1)
-    """
-    # Don't update too often
-    time.sleep(0.1)
+# Use Class to send report
+"""
+gp.move_joysticks(axis_values[0],axis_values[1],axis_values[2],axis_values[3],axis_values[4],axis_values[5])
+for ii,  button_value in enumerate(button_values):
+    if button_value:
+        #print("BUTTON PRESS: {}".format(ii))
+        gp.press_buttons(ii+1) #zero indexing is better
+    else:
+        gp.release_buttons(ii+1)
+"""
+
+"""
+# Don't update too often
+time.sleep(0.1) 
+"""
